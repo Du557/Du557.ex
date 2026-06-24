@@ -14,4 +14,4 @@ window.GOOGLE_REDIRECT_URI = '';
 
 // E-mails com acesso ao painel admin (totais de usuários). Deixe vazio para
 // que todos vejam apenas a própria conta.
-window.ADMIN_EMAILS = [];
+window.ADMIN_EMAILS = ['eduarduoo.heenriques@gmail.com'];
