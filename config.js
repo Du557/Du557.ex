@@ -11,3 +11,7 @@ window.FIREBASE_CONFIG = {
 window.FIREBASE_DATABASE_URL = window.FIREBASE_CONFIG.databaseURL;
 window.GOOGLE_CLIENT_ID = '';
 window.GOOGLE_REDIRECT_URI = '';
+
+// E-mails com acesso ao painel admin (totais de usuários). Deixe vazio para
+// que todos vejam apenas a própria conta.
+window.ADMIN_EMAILS = ['eduarduoo.heenriques@gmail.com'];

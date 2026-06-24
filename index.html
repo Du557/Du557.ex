@@ -36,50 +36,90 @@
         </div>
 
         <div id="login-card" class="auth-card">
-          <div class="auth-toggle">
-            <button type="button" class="toggle-btn active" data-mode="login">Entrar</button>
-            <button type="button" class="toggle-btn" data-mode="signup">Criar conta</button>
+          <div class="auth-toggle" role="tablist" aria-label="Escolha entrar ou criar conta">
+            <button type="button" class="toggle-btn active" data-mode="login" role="tab" aria-selected="true">Entrar</button>
+            <button type="button" class="toggle-btn" data-mode="signup" role="tab" aria-selected="false">Criar conta</button>
           </div>
 
-          <form id="login-form" class="auth-form">
-            <input type="email" id="login-email" placeholder="E-mail" required />
-            <input type="password" id="login-password" placeholder="Senha" required />
-            <button type="submit">Entrar</button>
+          <form id="login-form" class="auth-form" autocomplete="on">
+            <label class="field">
+              <span class="field-label">E-mail</span>
+              <input type="email" id="login-email" name="email" autocomplete="email" placeholder="voce@email.com" required />
+            </label>
+            <label class="field">
+              <span class="field-label">Senha</span>
+              <input type="password" id="login-password" name="current-password" autocomplete="current-password" minlength="6" placeholder="Sua senha" required />
+            </label>
+            <button type="submit" class="btn-primary">Entrar</button>
           </form>
 
-          <form id="signup-form" class="auth-form" hidden>
-            <input type="text" id="signup-name" placeholder="Seu nome" required />
-            <input type="email" id="signup-email" placeholder="E-mail" required />
-            <input type="password" id="signup-password" placeholder="Criar senha" required />
-            <button type="submit">Criar conta</button>
+          <form id="signup-form" class="auth-form" autocomplete="on" hidden>
+            <label class="field">
+              <span class="field-label">Nome</span>
+              <input type="text" id="signup-name" name="name" autocomplete="name" placeholder="Seu nome" required />
+            </label>
+            <label class="field">
+              <span class="field-label">E-mail</span>
+              <input type="email" id="signup-email" name="email" autocomplete="email" placeholder="voce@email.com" required />
+            </label>
+            <label class="field">
+              <span class="field-label">Senha</span>
+              <input type="password" id="signup-password" name="new-password" autocomplete="new-password" minlength="6" placeholder="Mínimo de 6 caracteres" required />
+            </label>
+            <button type="submit" class="btn-primary">Criar conta</button>
           </form>
 
-          <button id="google-btn" class="btn-google" type="button">Entrar com Google</button>
-          <p class="auth-hint">Acesso reservado para uso pessoal e seguro.</p>
-          <p id="auth-status" class="auth-hint">Acesso privado. Apenas você pode ver e usar este conteúdo.</p>
+          <div class="auth-divider"><span>ou</span></div>
+          <button id="google-btn" class="btn-google" type="button">
+            <svg class="google-icon" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.17-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.71-1.57 2.68-3.89 2.68-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.81.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.97 10.72a5.4 5.4 0 0 1 0-3.44V4.95H.96a9 9 0 0 0 0 8.1l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58A9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
+            Entrar com Google
+          </button>
+          <p id="auth-status" class="auth-status" role="status" aria-live="polite">Acesso privado. Apenas você pode ver e usar este conteúdo.</p>
         </div>
 
         <div id="vault-card" class="vault-card" hidden>
           <div class="admin-panel">
             <div class="admin-header">
-              <h3>Painel Admin</h3>
+              <h3 id="admin-title">Minha conta</h3>
               <button id="admin-toggle" class="btn-outline small" type="button">Mostrar</button>
             </div>
             <div id="admin-content" hidden>
-              <p class="auth-hint">Usuários cadastrados, sessões ativas e ações simples.</p>
+              <p id="admin-hint" class="auth-hint">Seus dados de acesso.</p>
               <div id="user-summary" class="saved-empty"></div>
               <ul id="admin-users" class="saved-list"></ul>
             </div>
           </div>
 
-          <form id="item-form" class="auth-form compact">
-            <input type="hidden" id="item-id" />
-            <input type="text" id="item-name" placeholder="Nome do item" required />
-            <input type="text" id="item-tag" placeholder="Tipo: script / extensão / config" />
-            <textarea id="item-notes" rows="3" placeholder="Descrição curta"></textarea>
-            <button type="submit" id="item-submit-btn">Salvar item</button>
-          </form>
+          <div class="item-form-block">
+            <h3 class="item-form-title">Adicionar script pessoal</h3>
+            <form id="item-form" class="auth-form compact">
+              <input type="hidden" id="item-id" />
+              <label class="field">
+                <span class="field-label">Nome</span>
+                <input type="text" id="item-name" placeholder="Ex.: Backup automático" required />
+              </label>
+              <label class="field">
+                <span class="field-label">Tipo</span>
+                <input type="text" id="item-tag" list="item-tag-list" placeholder="script / extensão / config" />
+                <datalist id="item-tag-list">
+                  <option value="script"></option>
+                  <option value="extensão"></option>
+                  <option value="config"></option>
+                </datalist>
+              </label>
+              <label class="field">
+                <span class="field-label">Descrição</span>
+                <textarea id="item-notes" rows="3" placeholder="O que esse item faz"></textarea>
+              </label>
+              <div class="form-actions">
+                <button type="submit" id="item-submit-btn" class="btn-primary">Salvar item</button>
+                <button type="button" id="item-cancel-btn" class="btn btn-outline" hidden>Cancelar</button>
+              </div>
+            </form>
+          </div>
+
           <div class="item-toolbar">
+            <label class="field-label" for="item-filter">Filtrar</label>
             <select id="item-filter" class="filter-select">
               <option value="all">Todos</option>
               <option value="script">Script</option>
