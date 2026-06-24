@@ -36,10 +36,6 @@ if (logoutBtn) {
   logoutBtn.hidden = true;
 }
 
-if (googleBtn) {
-  googleBtn.hidden = true;
-}
-
 function escapeHtml(value = '') {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -519,8 +515,12 @@ if (adminToggle && adminContent) {
 
 modeButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    modeButtons.forEach((btn) => btn.classList.remove('active'));
+    modeButtons.forEach((btn) => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-selected', 'false');
+    });
     button.classList.add('active');
+    button.setAttribute('aria-selected', 'true');
 
     const mode = button.dataset.mode;
     const loginForm = document.getElementById('login-form');
@@ -531,10 +531,12 @@ modeButtons.forEach((button) => {
     if (mode === 'signup') {
       loginForm.hidden = true;
       signupForm.hidden = false;
+      if (panelTitle) panelTitle.textContent = 'Criar conta';
       signupForm.querySelector('input')?.focus();
     } else {
       loginForm.hidden = false;
       signupForm.hidden = true;
+      if (panelTitle) panelTitle.textContent = 'Entrar';
       loginForm.querySelector('input')?.focus();
     }
   });
