@@ -80,24 +80,46 @@
         <div id="vault-card" class="vault-card" hidden>
           <div class="admin-panel">
             <div class="admin-header">
-              <h3>Painel Admin</h3>
+              <h3 id="admin-title">Minha conta</h3>
               <button id="admin-toggle" class="btn-outline small" type="button">Mostrar</button>
             </div>
             <div id="admin-content" hidden>
-              <p class="auth-hint">Usuários cadastrados, sessões ativas e ações simples.</p>
+              <p id="admin-hint" class="auth-hint">Seus dados de acesso.</p>
               <div id="user-summary" class="saved-empty"></div>
               <ul id="admin-users" class="saved-list"></ul>
             </div>
           </div>
 
-          <form id="item-form" class="auth-form compact">
-            <input type="hidden" id="item-id" />
-            <input type="text" id="item-name" placeholder="Nome do item" required />
-            <input type="text" id="item-tag" placeholder="Tipo: script / extensão / config" />
-            <textarea id="item-notes" rows="3" placeholder="Descrição curta"></textarea>
-            <button type="submit" id="item-submit-btn">Salvar item</button>
-          </form>
+          <div class="item-form-block">
+            <h3 class="item-form-title">Adicionar script pessoal</h3>
+            <form id="item-form" class="auth-form compact">
+              <input type="hidden" id="item-id" />
+              <label class="field">
+                <span class="field-label">Nome</span>
+                <input type="text" id="item-name" placeholder="Ex.: Backup automático" required />
+              </label>
+              <label class="field">
+                <span class="field-label">Tipo</span>
+                <input type="text" id="item-tag" list="item-tag-list" placeholder="script / extensão / config" />
+                <datalist id="item-tag-list">
+                  <option value="script"></option>
+                  <option value="extensão"></option>
+                  <option value="config"></option>
+                </datalist>
+              </label>
+              <label class="field">
+                <span class="field-label">Descrição</span>
+                <textarea id="item-notes" rows="3" placeholder="O que esse item faz"></textarea>
+              </label>
+              <div class="form-actions">
+                <button type="submit" id="item-submit-btn" class="btn-primary">Salvar item</button>
+                <button type="button" id="item-cancel-btn" class="btn btn-outline" hidden>Cancelar</button>
+              </div>
+            </form>
+          </div>
+
           <div class="item-toolbar">
+            <label class="field-label" for="item-filter">Filtrar</label>
             <select id="item-filter" class="filter-select">
               <option value="all">Todos</option>
               <option value="script">Script</option>
