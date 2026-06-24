@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="theme-color" content="#07111f" />
+  <title>Du557 | Scripts e Extensões</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="top-nav container">
+      <a class="brand" href="index.html">Du557</a>
+      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+      <div class="nav-links">
+        <a href="index.html" class="active">Início</a>
+      </div>
+    </nav>
+
+    <div class="hero-content container hero-centered">
+      <div class="hero-lock reveal">
+        <p class="eyebrow">ÁREA FECHADA</p>
+        <h1>Somente você acessa.</h1>
+        <p>Este espaço é para guardar scripts, extensões e configurações pessoais sem ruído.</p>
+      </div>
+
+      <section class="vault-panel reveal" id="private-vault">
+        <div class="vault-header">
+          <div>
+            <p class="eyebrow">Acesso</p>
+            <h2 id="panel-title">Entrar</h2>
+          </div>
+          <button id="logout-btn" class="btn btn-outline" hidden>Sair</button>
+        </div>
+
+        <div id="login-card" class="auth-card">
+          <div class="auth-toggle">
+            <button type="button" class="toggle-btn active" data-mode="login">Entrar</button>
+            <button type="button" class="toggle-btn" data-mode="signup">Criar conta</button>
+          </div>
+
+          <form id="login-form" class="auth-form">
+            <input type="email" id="login-email" placeholder="E-mail" required />
+            <input type="password" id="login-password" placeholder="Senha" required />
+            <button type="submit">Entrar</button>
+          </form>
+
+          <form id="signup-form" class="auth-form" hidden>
+            <input type="text" id="signup-name" placeholder="Seu nome" required />
+            <input type="email" id="signup-email" placeholder="E-mail" required />
+            <input type="password" id="signup-password" placeholder="Criar senha" required />
+            <button type="submit">Criar conta</button>
+          </form>
+
+          <button id="google-btn" class="btn-google" type="button">Entrar com Google</button>
+          <p class="auth-hint">Acesso reservado para uso pessoal e seguro.</p>
+          <p id="auth-status" class="auth-hint">Acesso privado. Apenas você pode ver e usar este conteúdo.</p>
+        </div>
+
+        <div id="vault-card" class="vault-card" hidden>
+          <div class="admin-panel">
+            <div class="admin-header">
+              <h3>Painel Admin</h3>
+              <button id="admin-toggle" class="btn-outline small" type="button">Mostrar</button>
+            </div>
+            <div id="admin-content" hidden>
+              <p class="auth-hint">Usuários cadastrados, sessões ativas e ações simples.</p>
+              <div id="user-summary" class="saved-empty"></div>
+              <ul id="admin-users" class="saved-list"></ul>
+            </div>
+          </div>
+
+          <form id="item-form" class="auth-form compact">
+            <input type="hidden" id="item-id" />
+            <input type="text" id="item-name" placeholder="Nome do item" required />
+            <input type="text" id="item-tag" placeholder="Tipo: script / extensão / config" />
+            <textarea id="item-notes" rows="3" placeholder="Descrição curta"></textarea>
+            <button type="submit" id="item-submit-btn">Salvar item</button>
+          </form>
+          <div class="item-toolbar">
+            <select id="item-filter" class="filter-select">
+              <option value="all">Todos</option>
+              <option value="script">Script</option>
+              <option value="extensão">Extensão</option>
+              <option value="config">Config</option>
+            </select>
+          </div>
+          <ul id="saved-items" class="saved-list"></ul>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <main class="container" id="app-content" hidden>
+    <section class="intro-panel reveal">
+      <div>
+        <p class="eyebrow">Scripts</p>
+        <h2>Seção privada para guardar tudo</h2>
+      </div>
+      <p>Adicione quantos itens quiser. Cada bloco pode guardar um script, uma extensão, uma configuração ou um lembrete.</p>
+    </section>
+
+    <section class="project-grid">
+      <article class="project-card reveal">
+        <img src="assets/project-placeholder.svg" alt="Preview do item 1" />
+        <div class="project-card-body">
+          <h3>Script 01</h3>
+          <p>Automação simples para algo útil no dia a dia.</p>
+          <a href="#private-vault">Salvar</a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <img src="assets/project-placeholder.svg" alt="Preview do item 2" />
+        <div class="project-card-body">
+          <h3>Extensão 01</h3>
+          <p>Ferramenta leve para facilitar um fluxo específico.</p>
+          <a href="#private-vault">Salvar</a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <img src="assets/project-placeholder.svg" alt="Preview do item 3" />
+        <div class="project-card-body">
+          <h3>Config 01</h3>
+          <p>Configuração básica para deixar tudo mais prático.</p>
+          <a href="#private-vault">Salvar</a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <img src="assets/project-placeholder.svg" alt="Preview do item 4" />
+        <div class="project-card-body">
+          <h3>Item 04</h3>
+          <p>Outro bloco simples para guardar algo útil.</p>
+          <a href="#private-vault">Salvar</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Du557 • coleção pessoal de scripts, extensões e ideias.</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js';
+    import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js';
+
+    const firebaseConfig = window.FIREBASE_CONFIG || {};
+    window.firebaseApp = initializeApp(firebaseConfig);
+
+    window.firebaseAuth = getAuth(window.firebaseApp);
+    window.firebaseDb = getDatabase(window.firebaseApp);
+    window.firebaseRefs = { set, ref, get };
+    window.firebaseAuthHelpers = { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged };
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
